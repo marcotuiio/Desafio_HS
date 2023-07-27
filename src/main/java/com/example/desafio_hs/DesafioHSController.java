@@ -3,7 +3,8 @@ package com.example.desafio_hs;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
-public class HelloController {
+// Classe padrão provida pelo JavaFX responsável por algumas ações referentes a janela do programa
+public class DesafioHSController {
     @FXML
     private Label welcomeText;
 
