@@ -53,7 +53,7 @@ public class DataboardController implements Initializable {
                     "jdbc:mysql://localhost:3306/hstechnology",
                     "root",
                     "marco");
-            System.out.println("\n\n ---> Conectado com sucessso");
+//            System.out.println("\n\n ---> Conectado com sucessso");
         } catch (ClassNotFoundException | SQLException error) {
             error.printStackTrace();
             System.exit(1);
@@ -69,11 +69,15 @@ public class DataboardController implements Initializable {
 
         try {
             preparedStatement = connection.prepareStatement(
-                    "SELECT Paciente_ID, Nome, Cpf, Celular, NumeroCalcado, Situacao, DataCadastro FROM pacientes");
+                "SELECT Paciente_ID, Profissional_ID, Profissao_ID, Patologia_ID, Clinica_ID, Foto, Nome, Sexo, DataNascimento, Cpf, Rg, Endereco, Complemento, Bairro, Cidade, Estado, Cep, Pais, DddTelefone, Telefone, DddCelular, Celular, Email, Altura, Peso, NumeroCalcado, DataCadastro, Situacao, DddCelular, Celular, DddTelefone, Telefone, celularFormatado, telefoneFormatado FROM pacientes"
+            );
             ResultSet resultSet = preparedStatement.executeQuery();
 
             {
                 while (resultSet.next()) {
+                    // Realizo todas a consultas possiveis no banco para montar o objeto do paciente completo. Pois
+                    // apesar de inicialmente exibir apenas alguns na interface, é importante que o objeto seja montado
+                    // integralmente
                     Paciente paciente = new Paciente();
                     paciente.setPacienteId(resultSet.getInt("Paciente_ID"));
                     paciente.setProfissionalId(resultSet.getInt("Profissional_ID"));
@@ -83,7 +87,7 @@ public class DataboardController implements Initializable {
                     paciente.setFoto(resultSet.getString("Foto"));
                     paciente.setNome(resultSet.getString("Nome"));
                     paciente.setSexo(resultSet.getString("Sexo"));
-                    paciente.setDataNascimento(resultSet.getString("Nascimento"));
+                    paciente.setDataNascimento(resultSet.getString("DataNascimento"));
                     paciente.setCpf(resultSet.getString("Cpf"));
                     paciente.setRg(resultSet.getString("Rg"));
                     paciente.setEndereco(resultSet.getString("Endereco"));
@@ -105,7 +109,7 @@ public class DataboardController implements Initializable {
                     paciente.setSituacao(resultSet.getInt("Situacao"));
                     paciente.setCelularFormatado(resultSet.getString("celularFormatado"));
                     paciente.setTelefoneFormatado(resultSet.getString("telefoneFormatado"));
-                    System.out.print(paciente);
+
                     pacientes.add(paciente);
                 }
             }
@@ -128,7 +132,7 @@ public class DataboardController implements Initializable {
     // para exibir os dados no início da execução.
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        System.out.println("\n\n---> OIII INITIALIZE\n\n");
+//        System.out.println("\n\n---> OIII INITIALIZE\n\n");
         Connect();
         table();
     }

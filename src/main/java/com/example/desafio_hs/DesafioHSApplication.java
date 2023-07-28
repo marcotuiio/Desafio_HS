@@ -15,6 +15,7 @@ public class DesafioHSApplication extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
+//        System.out.println("Abrindo interface");
         FXMLLoader fxmlLoader = new FXMLLoader(DesafioHSApplication.class.getResource("databoard.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 893, 629);
         stage.setTitle("Desafio_Marco");
