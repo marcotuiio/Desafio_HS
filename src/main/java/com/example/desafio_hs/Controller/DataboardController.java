@@ -19,6 +19,10 @@ import java.util.ResourceBundle;
 // Classe elaborada a partir do 'front' do programa via JavaFX responsável pela integração
 // do ambiente externo, como a tabela de dados e o banco
 public class DataboardController implements Initializable {
+    private final String url_banco = "jdbc:mysql://localhost:3306/hstechnology";
+    private final String username_banco = "root";
+    private final String senha_banco = "marco";
+
     @FXML
     private TableColumn<Paciente, Number> CalcadoColumn;
 
@@ -49,10 +53,7 @@ public class DataboardController implements Initializable {
     public void Connect() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            connection = DriverManager.getConnection(
-                    "jdbc:mysql://localhost:3306/hstechnology",
-                    "root",
-                    "marco");
+            connection = DriverManager.getConnection(url_banco, username_banco, senha_banco);
 //            System.out.println("\n\n ---> Conectado com sucessso");
         } catch (ClassNotFoundException | SQLException error) {
             error.printStackTrace();

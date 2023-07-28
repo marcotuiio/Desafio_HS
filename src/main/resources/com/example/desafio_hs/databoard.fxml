@@ -11,8 +11,10 @@
 <!--Basicamente o front-end da aplicação, feito utilizando o software ScreenBuilder.
 Aqui está a organização da tabela que organiza os dados extraídos do banco e os campos de texto
 com os quais o usuário interage para filtra a tabela-->
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="629.0" prefWidth="893.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.desafio_hs.Controller.DataboardController">
+<!--O arquivo passado em fx:controller é o responsável pelo link entre o banco de dados e a interface-->
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+            prefHeight="629.0" prefWidth="893.0" xmlns="http://javafx.com/javafx/20.0.1"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.desafio_hs.Controller.DataboardController">
    <children>
       <Label layoutX="372.0" layoutY="23.0" text="Pacientes">
          <font>

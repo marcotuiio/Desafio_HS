@@ -23,7 +23,8 @@ public class DesafioHSApplication extends Application {
         stage.show();
     }
 
-    // Classe principal do programa
+    // Classe principal do programa. O método launch() é padrão do JavaFX, responsável por
+    // iniciar a interface gráfica e chamar o método de inicializar o Controller
     public static void main(String[] args) {
         launch();
     }
