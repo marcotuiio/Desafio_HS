@@ -17,4 +17,6 @@ Uma vez que tudo está de acordo, basta abrir o arquivo com/example/desafio_hs/D
 * Montar a classe responsável pelo tipo de dados no BANCO (FEITOS)
   * tentando criar a classe paciente para que o link com o banco funcione corretamente; problemas iniciais quanto ao formato que pretendo exibir
   * tentando estabelecer conexão com meu banco de dados local, encontrei problemas em fazer o driver JDBC funcionar
-* TODO: Criar os metodos capazes de ordenar a lista de acordo com a digitação do usuario nos campos da interface
+* Método de filtrar por nome, data de cadastro e nº calçado implementados e funcionando.
+  * com esse modelo pronto, é possível implementar o filtro de qualquer outro parametro
+  mudando apenas qual será o tipo de dado comparado. 

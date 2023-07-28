@@ -12,9 +12,8 @@
 Aqui está a organização da tabela que organiza os dados extraídos do banco e os campos de texto
 com os quais o usuário interage para filtra a tabela-->
 <!--O arquivo passado em fx:controller é o responsável pelo link entre o banco de dados e a interface-->
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-            prefHeight="629.0" prefWidth="893.0" xmlns="http://javafx.com/javafx/20.0.1"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.desafio_hs.Controller.DataboardController">
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="629.0" prefWidth="893.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.desafio_hs.Controller.DataboardController">
    <children>
       <Label layoutX="372.0" layoutY="23.0" text="Pacientes">
          <font>
@@ -24,19 +23,19 @@ com os quais o usuário interage para filtra a tabela-->
       <Pane layoutX="14.0" layoutY="77.0" prefHeight="91.0" prefWidth="260.0">
          <children>
             <Label layoutX="18.0" layoutY="34.0" prefHeight="23.0" prefWidth="69.0" text="Nome" />
-            <TextField layoutX="87.0" layoutY="33.0" />
+            <TextField fx:id="FiltroNome" layoutX="87.0" layoutY="33.0" />
          </children>
       </Pane>
       <Pane layoutX="317.0" layoutY="77.0" prefHeight="91.0" prefWidth="260.0">
          <children>
             <Label layoutX="18.0" layoutY="34.0" prefHeight="23.0" prefWidth="69.0" text="Nº Calçado" />
-            <TextField layoutX="87.0" layoutY="33.0" />
+            <TextField fx:id="FiltroCalcado" layoutX="87.0" layoutY="33.0" />
          </children>
       </Pane>
       <Pane layoutX="619.0" layoutY="77.0" prefHeight="91.0" prefWidth="260.0">
          <children>
             <Label layoutX="18.0" layoutY="34.0" prefHeight="23.0" prefWidth="69.0" text="Cadastro" />
-            <TextField layoutX="87.0" layoutY="33.0" />
+            <TextField fx:id="FiltroData" layoutX="87.0" layoutY="33.0" />
          </children>
       </Pane>
       <TableView fx:id="pacientesTable" layoutX="45.0" layoutY="168.0" prefHeight="390.0" prefWidth="804.0">

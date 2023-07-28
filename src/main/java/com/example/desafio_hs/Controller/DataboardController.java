@@ -1,17 +1,16 @@
 package com.example.desafio_hs.Controller;
 
 import com.example.desafio_hs.Model.Paciente;
-//import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.IntegerProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-
+import javafx.scene.control.TextField;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
 import java.net.URL;
 import java.sql.*;
 import java.util.ResourceBundle;
@@ -19,9 +18,9 @@ import java.util.ResourceBundle;
 // Classe elaborada a partir do 'front' do programa via JavaFX responsável pela integração
 // do ambiente externo, como a tabela de dados e o banco
 public class DataboardController implements Initializable {
-    private final String url_banco = "jdbc:mysql://localhost:3306/hstechnology";
-    private final String username_banco = "root";
-    private final String senha_banco = "marco";
+    final String url_banco = "jdbc:mysql://localhost:3306/hstechnology";
+    final String username_banco = "root";
+    final String senha_banco = "marco";
 
     @FXML
     private TableColumn<Paciente, Number> CalcadoColumn;
@@ -46,6 +45,15 @@ public class DataboardController implements Initializable {
 
     @FXML
     private TableView<Object> pacientesTable;
+
+    @FXML
+    private TextField FiltroCalcado;
+
+    @FXML
+    private TextField FiltroData;
+
+    @FXML
+    private TextField FiltroNome;
 
     Connection connection;
     PreparedStatement preparedStatement;
@@ -129,12 +137,84 @@ public class DataboardController implements Initializable {
         }
     }
 
-    // hamado quando a aplicação é iniciada e, nesse caso, ele apenas chama os métodos Connect() e table()
+    // Função que deve receber de forma dinâmica o que o usuário digita no campo de nome e busca
+    // na tabela de pacientes para exibir os nomes condizentes com o filtro
+    public void aplicarFiltroNome(String filtro, ObservableList<Object> listaOriginal) {
+        ObservableList<Object> pacientesFiltrados = FXCollections.observableArrayList();
+
+        // Percorre sempre a lista ORIGINAL de pacientes, pois se algum char for apagado é para
+        // ela que as buscas devem retornar
+        if (filtro != null) {
+            for (Object paciente : listaOriginal) {
+                String nome = ((Paciente) paciente).getNome();
+                if (nome.toLowerCase().startsWith(filtro.toLowerCase())) {
+                    pacientesFiltrados.add(paciente);
+                }
+            }
+        }
+        pacientesTable.setItems(pacientesFiltrados);
+    }
+
+    // Função que deve receber de forma dinâmica o que o usuário digita no campo de numero do calçado
+    // e busca na tabela de pacientes para exibir os nomes condizentes com o filtro
+    public void aplicarFiltroCalcado(String filtro, ObservableList<Object> listaOriginal) {
+        ObservableList<Object> pacientesFiltrados = FXCollections.observableArrayList();
+
+        // Percorre sempre a lista ORIGINAL de pacientes, pois se algum char for apagado é para
+        // ela que as buscas devem retornar
+        if (filtro != null) {
+            for (Object paciente : listaOriginal) {
+                int num = ((Paciente) paciente).getNumeroCalcado();
+                String num_calcado = Integer.toString(num);
+                if (num_calcado.startsWith(filtro.toLowerCase())) {
+                    pacientesFiltrados.add(paciente);
+                }
+            }
+        }
+        pacientesTable.setItems(pacientesFiltrados);
+    }
+
+    // Função que deve receber de forma dinâmica o que o usuário digita no campo data de cadastro
+    // e busca na tabela de pacientes para exibir os nomes condizentes com o filtro
+    public void aplicarFiltroData(String filtro, ObservableList<Object> listaOriginal) {
+        ObservableList<Object> pacientesFiltrados = FXCollections.observableArrayList();
+
+        // Percorre sempre a lista ORIGINAL de pacientes, pois se algum char for apagado é para
+        // ela que as buscas devem retornar
+        if (filtro != null) {
+            for (Object paciente : listaOriginal) {
+                String data = ((Paciente) paciente).getDataCadastro();
+                if (data.toLowerCase().startsWith(filtro.toLowerCase())) {
+                    pacientesFiltrados.add(paciente);
+                }
+            }
+        }
+        pacientesTable.setItems(pacientesFiltrados);
+    }
+
+    // Chamado quando a aplicação é iniciada e, nesse caso, ele apenas chama os métodos Connect() e table()
     // para exibir os dados no início da execução.
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 //        System.out.println("\n\n---> OIII INITIALIZE\n\n");
         Connect();
         table();
+
+        // Salvando a tabela original pois com a aplicação e remoção dos filtros os dados
+        // estão sendo perdidos
+        ObservableList<Object> reserva = FXCollections.observableArrayList();
+        reserva.addAll(pacientesTable.getItems());
+
+        FiltroNome.textProperty().addListener((observable, oldValue, newValue) -> {
+            aplicarFiltroNome(newValue, reserva);
+        });
+
+        FiltroCalcado.textProperty().addListener((observable, oldValue, newValue) -> {
+            aplicarFiltroCalcado(newValue, reserva);
+        });
+
+        FiltroData.textProperty().addListener((observable, oldValue, newValue) -> {
+            aplicarFiltroData(newValue, reserva);
+        });
     }
 }
