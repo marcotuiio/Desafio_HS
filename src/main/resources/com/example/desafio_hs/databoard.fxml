@@ -12,7 +12,9 @@
 Aqui está a organização da tabela que organiza os dados extraídos do banco e os campos de texto
 com os quais o usuário interage para filtra a tabela-->
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="629.0" prefWidth="893.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+            prefHeight="629.0" prefWidth="893.0" xmlns="http://javafx.com/javafx/20.0.1"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.desafio_hs.Controller.DataboardController">
    <children>
       <Label layoutX="372.0" layoutY="23.0" text="Pacientes">
          <font>
@@ -37,14 +39,14 @@ com os quais o usuário interage para filtra a tabela-->
             <TextField layoutX="87.0" layoutY="33.0" />
          </children>
       </Pane>
-      <TableView fx:id="pacientes" layoutX="42.0" layoutY="168.0" prefHeight="389.0" prefWidth="810.0">
+      <TableView fx:id="pacientesTable" layoutX="42.0" layoutY="168.0" prefHeight="389.0" prefWidth="810.0">
         <columns>
           <TableColumn fx:id="IdColumn" prefWidth="64.79998779296875" text="ID" />
           <TableColumn fx:id="NomeColumn" prefWidth="256.80001068115234" text="Nome" />
             <TableColumn fx:id="CpfColumn" prefWidth="110.4000244140625" text="CPF" />
             <TableColumn fx:id="CelularColumn" prefWidth="104.00003051757812" text="Celular" />
             <TableColumn fx:id="CalcadoColumn" prefWidth="68.00006103515625" text="Nº Calçado" />
-            <TableColumn fx:id="SituacaoColumn" prefWidth="90.39996337890625" text="Situaçao" />
+            <TableColumn fx:id="SituacaoColumn" prefWidth="90.39996337890625" text="Situação" />
             <TableColumn fx:id="DataColumn" prefWidth="112.0" text="Data Cadastro" />
         </columns>
       </TableView>

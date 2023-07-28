@@ -9,7 +9,7 @@ import javafx.beans.property.StringProperty;
 // manipulação, essencial para modularização
 // Atenção aos tipos das variáveis, é fundamental que estajam alinhados com os tipos no BD
 
-public class Pacientes {
+public class Paciente {
     private final IntegerProperty paciente_ID;
     private final IntegerProperty profissional_ID;
     private final IntegerProperty profissao_ID;
@@ -35,13 +35,13 @@ public class Pacientes {
     private final StringProperty email;
     private final StringProperty altura;
     private final StringProperty peso;
-    private final StringProperty numeroCalcado;
+    private final IntegerProperty numeroCalcado;
     private final StringProperty dataCadastro;
-    private final StringProperty situacao;
+    private final IntegerProperty situacao;
     private final StringProperty celularFormatado;
     private final StringProperty telefoneFormatado;
 
-    public Pacientes() {
+    public Paciente() {
         paciente_ID = new SimpleIntegerProperty(this, "paciente_ID");
         profissional_ID = new SimpleIntegerProperty(this, "profissional_ID");
         profissao_ID = new SimpleIntegerProperty(this, "profissao_ID");
@@ -67,32 +67,32 @@ public class Pacientes {
         email = new SimpleStringProperty(this, "email");
         altura = new SimpleStringProperty(this, "altura");
         peso = new SimpleStringProperty(this, "peso");
-        numeroCalcado = new SimpleStringProperty(this, "numeroCalcado");
+        numeroCalcado = new SimpleIntegerProperty(this, "numeroCalcado");
         dataCadastro = new SimpleStringProperty(this, "dataCadastro");
-        situacao = new SimpleStringProperty(this, "situacao");
+        situacao = new SimpleIntegerProperty(this, "situacao");
         celularFormatado = new SimpleStringProperty(this, "celularFormatado");
         telefoneFormatado = new SimpleStringProperty(this, "telefoneFormatado");
     }
 
     public IntegerProperty pacienteIdProperty() { return paciente_ID; }
     public int getPacienteId() { return paciente_ID.get(); }
-    public void setPacienteId(String newId) { paciente_ID.set(Integer.parseInt(newId)); }
+    public void setPacienteId(int newId) { paciente_ID.set(newId); }
 
-    public IntegerProperty profissionalProperty() { return profissional_ID; }
-    public int getProfissional() { return profissional_ID.get(); }
-    public void setProfissional(String newProfissional) { profissional_ID.set(Integer.parseInt(newProfissional)); }
+    public IntegerProperty profissionalIdProperty() { return profissional_ID; }
+    public int getProfissionalId() { return profissional_ID.get(); }
+    public void setProfissionalId(int newId) { profissional_ID.set(newId); }
 
-    public IntegerProperty profissaoProperty() { return profissao_ID; }
-    public int getProfissao() { return profissao_ID.get(); }
-    public void setProfissao(String newProfissao) { profissao_ID.set(Integer.parseInt(newProfissao)); }
+    public IntegerProperty profissaoIdProperty() { return profissao_ID; }
+    public int getProfissaoId() { return profissao_ID.get(); }
+    public void setProfissaoId(int newId) { profissao_ID.set(newId); }
 
-    public IntegerProperty patologiaProperty() { return patologia_ID; }
-    public int getPatologia() { return patologia_ID.get(); }
-    public void setPatologia(String newPatologia) { patologia_ID.set(Integer.parseInt(newPatologia)); }
+    public IntegerProperty patologiaIdProperty() { return patologia_ID; }
+    public int getPatologiaId() { return patologia_ID.get(); }
+    public void setPatologiaId(int newId) { patologia_ID.set(newId); }
 
-    public IntegerProperty clinicaProperty() { return clinica_ID; }
-    public int getClinica() { return clinica_ID.get(); }
-    public void setClinica(String newClinica) { clinica_ID.set(Integer.parseInt(newClinica)); }
+    public IntegerProperty clinicaIdProperty() { return clinica_ID; }
+    public int getClinicaId() { return clinica_ID.get(); }
+    public void setClinicaId(int newId) { clinica_ID.set(newId); }
 
     public StringProperty fotoProperty() { return foto; }
     public String getFoto() { return foto.get(); }
@@ -140,7 +140,7 @@ public class Pacientes {
 
     public IntegerProperty cepProperty() { return cep; }
     public int getCep() { return cep.get(); }
-    public void setCep(String newCep) { cep.set(Integer.parseInt(newCep)); }
+    public void setCep(int newCep) { cep.set(newCep); }
 
     public StringProperty paisProperty() { return pais; }
     public String getPais() { return pais.get(); }
@@ -148,19 +148,19 @@ public class Pacientes {
 
     public IntegerProperty dddTelefoneProperty() { return dddTelefone; }
     public int getDddTelefone() { return dddTelefone.get(); }
-    public void setDddTelefone(String newDddTelefone) { dddTelefone.set(Integer.parseInt(newDddTelefone)); }
+    public void setDddTelefone(int newDddTelefone) { dddTelefone.set(newDddTelefone); }
 
     public IntegerProperty telefoneProperty() { return telefone; }
     public int getTelefone() { return telefone.get(); }
-    public void setTelefone(String newTelefone) { telefone.set(Integer.parseInt(newTelefone)); }
+    public void setTelefone(int newTelefone) { telefone.set(newTelefone); }
 
     public IntegerProperty dddCelularProperty() { return dddCelular; }
     public int getDddCelular() { return dddCelular.get(); }
-    public void setDddCelular(String newDddCelular) { dddCelular.set(Integer.parseInt(newDddCelular)); }
+    public void setDddCelular(int newDddCelular) { dddCelular.set(newDddCelular); }
 
     public IntegerProperty celularProperty() { return celular; }
     public int getCelular() { return celular.get(); }
-    public void setCelular(String newCelular) { celular.set(Integer.parseInt(newCelular)); }
+    public void setCelular(int newCelular) { celular.set(newCelular); }
 
     public StringProperty emailProperty() { return email; }
     public String getEmail() { return email.get(); }
@@ -174,17 +174,17 @@ public class Pacientes {
     public String getPeso() { return peso.get(); }
     public void setPeso(String newPeso) { peso.set(newPeso); }
 
-    public StringProperty numeroCalcadoProperty() { return numeroCalcado; }
-    public String getNumeroCalcado() { return numeroCalcado.get(); }
-    public void setNumeroCalcado(String newNumeroCalcado) { numeroCalcado.set(newNumeroCalcado); }
+    public IntegerProperty numeroCalcadoProperty() { return numeroCalcado; }
+    public int getNumeroCalcado() { return numeroCalcado.get(); }
+    public void setNumeroCalcado(int newNumeroCalcado) { numeroCalcado.set(newNumeroCalcado); }
 
     public StringProperty dataCadastroProperty() { return dataCadastro; }
     public String getDataCadastro() { return dataCadastro.get(); }
     public void setDataCadastro(String newDataCadastro) { dataCadastro.set(newDataCadastro); }
 
-    public StringProperty situacaoProperty() { return situacao; }
-    public String getSituacao() { return situacao.get(); }
-    public void setSituacao(String newSituacao) { situacao.set(newSituacao); }
+    public IntegerProperty situacaoProperty() { return situacao; }
+    public int getSituacao() { return situacao.get(); }
+    public void setSituacao(int newSituacao) { situacao.set(newSituacao); }
 
     public StringProperty celularFormatadoProperty() { return celularFormatado; }
     public String getCelularFormatado() { return celularFormatado.get(); }
