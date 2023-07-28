@@ -1,7 +1,7 @@
 package com.example.desafio_hs.Controller;
 
 import com.example.desafio_hs.Model.Paciente;
-import javafx.beans.property.IntegerProperty;
+//import javafx.beans.property.IntegerProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -48,9 +48,9 @@ public class DataboardController implements Initializable {
 
     public void Connect() {
         try {
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection(
-                    "jdbc:mysql://${MYSQL_HOST:127.0.0.1}:3306/hstechnology",
+                    "jdbc:mysql://localhost:3306/hstechnology",
                     "root",
                     "marco");
             System.out.println("\n\n ---> Conectado com sucessso");
