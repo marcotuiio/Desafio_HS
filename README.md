@@ -6,7 +6,7 @@ Crie uma aplicação Java Desktop que liste os pacientes de um banco de dados My
 A aplicação deve permitir que o profissional pesquise pelo nome do paciente e atualize a lista dinamicamente conforme a digitação.
 
 ## Instrução de uso
-No arquivo DataboardController.java altere os campos url_banco, username_banco e senha_banco para acessarem
+No arquivo DatabaseManager.java altere os campos DB_URL, BD_USERNAME e DB_PASSWORD para acessarem
 o banco de dados MySql que desejar. 
 Certifique-se de que todos os componentes internos estão presentes no projeto, principalmente o driver JDBC
 Uma vez que tudo está de acordo, basta abrir o arquivo com/example/desafio_hs/DesafioHSApplication.java e rodar
@@ -19,4 +19,8 @@ Uma vez que tudo está de acordo, basta abrir o arquivo com/example/desafio_hs/D
   * tentando estabelecer conexão com meu banco de dados local, encontrei problemas em fazer o driver JDBC funcionar
 * Método de filtrar por nome, data de cadastro e nº calçado implementados e funcionando.
   * com esse modelo pronto, é possível implementar o filtro de qualquer outro parametro
-  mudando apenas qual será o tipo de dado comparado. 
+  mudando apenas qual será o tipo de dado comparado.
+* Implementar nova interface e método que comunique com a tabela exames
+  * 1-criar classe model para Exame
+  * 2-criar tabela
+  * 3-descobrir como abrir outra tela para cada paciente

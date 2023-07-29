@@ -6,9 +6,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.net.URL;
@@ -18,9 +17,9 @@ import java.util.ResourceBundle;
 // Classe elaborada a partir do 'front' do programa via JavaFX responsável pela integração
 // do ambiente externo, como a tabela de dados e o banco
 public class DataboardController implements Initializable {
-    final String url_banco = "jdbc:mysql://localhost:3306/hstechnology";
-    final String username_banco = "root";
-    final String senha_banco = "marco";
+    private static final String DB_URL = "jdbc:mysql://localhost:3306/hstechnology";
+    private static final String DB_USER = "root";
+    private static final String DB_PASSWORD = "marco";
 
     @FXML
     private TableColumn<Paciente, Number> CalcadoColumn;
@@ -55,25 +54,20 @@ public class DataboardController implements Initializable {
     @FXML
     private TextField FiltroNome;
 
+    @FXML
+    private TableColumn<Paciente, Void> ExamesColumn;
+
+    private DatabaseManager databaseManager = new DatabaseManager();
     Connection connection;
     PreparedStatement preparedStatement;
-
-    public void Connect() {
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            connection = DriverManager.getConnection(url_banco, username_banco, senha_banco);
-//            System.out.println("\n\n ---> Conectado com sucessso");
-        } catch (ClassNotFoundException | SQLException error) {
-            error.printStackTrace();
-            System.exit(1);
-        }
-    }
 
     // O método table() é responsável por conectar-se ao banco de dados, executar a consulta SQL para obter os
     // dados dos pacientes e, em seguida, preencher a tabela com os resultados. Ele também configura as
     // CellValueFactory para cada coluna, para vincular as propriedades corretas de Paciente às células da tabela.
-    public void table() {
-        Connect();
+    public void tablePacientes() {
+        databaseManager.connect();
+        connection = databaseManager.getConnection();
+
         ObservableList<Object> pacientes = FXCollections.observableArrayList();
 
         try {
@@ -197,8 +191,9 @@ public class DataboardController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 //        System.out.println("\n\n---> OIII INITIALIZE\n\n");
-        Connect();
-        table();
+        databaseManager.connect();
+        connection = databaseManager.getConnection();
+        tablePacientes();
 
         // Salvando a tabela original pois com a aplicação e remoção dos filtros os dados
         // estão sendo perdidos
