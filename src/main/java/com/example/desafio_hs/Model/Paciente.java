@@ -6,8 +6,8 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.StringProperty;
 
 // A classe Pacientes é a grande responsável pela integração Interface <-> Banco de Dados
-// Aqui os dados são mapeados, e assim os objetos podem ser criados para a futura exibição e
-// manipulação, essencial para modularização
+// Aqui os dados da tabela 'pacientes' são mapeados, e assim os objetos podem ser criados para
+// a futura exibição e manipulação, essencial para modularização
 // Atenção aos tipos das variáveis, é fundamental que estajam alinhados com os tipos no BD
 
 public class Paciente {

@@ -21,6 +21,7 @@ Uma vez que tudo está de acordo, basta abrir o arquivo com/example/desafio_hs/D
   * com esse modelo pronto, é possível implementar o filtro de qualquer outro parametro
   mudando apenas qual será o tipo de dado comparado.
 * Implementar nova interface e método que comunique com a tabela exames
-  * 1-criar classe model para Exame
-  * 2-criar tabela
-  * 3-descobrir como abrir outra tela para cada paciente
+  * 1-criar classe model para Exame (FEITO)
+  * 2-criar tabela (FEITO)
+  * 3-adicionar o botao na tabela de pacientes (FEITO)
+  * 4-descobrir como abrir outra tela para cada paciente 

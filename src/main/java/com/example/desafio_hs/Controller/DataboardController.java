@@ -58,21 +58,21 @@ public class DataboardController implements Initializable {
     private TableColumn<Paciente, Void> ExamesColumn;
 
     private DatabaseManager databaseManager = new DatabaseManager();
-    Connection connection;
+//    Connection connection;
     PreparedStatement preparedStatement;
 
-    // O método table() é responsável por conectar-se ao banco de dados, executar a consulta SQL para obter os
+    // O método tablePacientes() é responsável por conectar-se ao banco de dados, executar a consulta SQL para obter os
     // dados dos pacientes e, em seguida, preencher a tabela com os resultados. Ele também configura as
     // CellValueFactory para cada coluna, para vincular as propriedades corretas de Paciente às células da tabela.
     public void tablePacientes() {
         databaseManager.connect();
-        connection = databaseManager.getConnection();
+        Connection connection = databaseManager.getConnection();
 
         ObservableList<Object> pacientes = FXCollections.observableArrayList();
 
         try {
             preparedStatement = connection.prepareStatement(
-                "SELECT Paciente_ID, Profissional_ID, Profissao_ID, Patologia_ID, Clinica_ID, Foto, Nome, Sexo, DataNascimento, Cpf, Rg, Endereco, Complemento, Bairro, Cidade, Estado, Cep, Pais, DddTelefone, Telefone, DddCelular, Celular, Email, Altura, Peso, NumeroCalcado, DataCadastro, Situacao, DddCelular, Celular, DddTelefone, Telefone, celularFormatado, telefoneFormatado FROM pacientes"
+                    "SELECT * from pacientes"
             );
             ResultSet resultSet = preparedStatement.executeQuery();
 
@@ -126,8 +126,53 @@ public class DataboardController implements Initializable {
             SituacaoColumn.setCellValueFactory(f -> f.getValue().situacaoProperty());
             DataColumn.setCellValueFactory(f -> f.getValue().dataCadastroProperty());
 
+            criarBotaoExames();
+
         } catch (SQLException ex) {
             Logger.getLogger(DataboardController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void criarBotaoExames() {
+        ExamesColumn.setCellFactory(param -> new TableCell<>() {
+            private final Button examesButton = new Button("EXAMES");
+
+            {
+                // Define a ação do botão quando clicado
+                examesButton.setOnAction(event -> {
+                    Paciente paciente = getTableView().getItems().get(getIndex());
+                    abrirConsultaExames(paciente.getPacienteId());
+                });
+            }
+
+            protected void updateItem(Void item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty) {
+                    setGraphic(null);
+                } else {
+                    setGraphic(examesButton);
+                }
+            }
+        });
+    }
+
+    private void abrirConsultaExames(int pacienteId) {
+        // Aqui você deve implementar o código para abrir a consulta de exames
+        // usando o ID do paciente.
+        // Execute a consulta SQL na tabela "exames" utilizando o pacienteId.
+        // Por exemplo:
+        Connection connection = databaseManager.getConnection();
+        try {
+            // Supondo que você já tem uma conexão com o banco de dados chamada "connection"
+            PreparedStatement preparedStatement = connection.prepareStatement(
+                    "SELECT * FROM exames WHERE Paciente_ID = ?");
+            preparedStatement.setInt(1, pacienteId);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            // Faça o que for necessário com o resultado da consulta...
+            // Por exemplo, exibir os exames em uma nova janela ou em um diálogo.
+        } catch (SQLException ex) {
+            ex.printStackTrace();
         }
     }
 
@@ -191,8 +236,6 @@ public class DataboardController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 //        System.out.println("\n\n---> OIII INITIALIZE\n\n");
-        databaseManager.connect();
-        connection = databaseManager.getConnection();
         tablePacientes();
 
         // Salvando a tabela original pois com a aplicação e remoção dos filtros os dados

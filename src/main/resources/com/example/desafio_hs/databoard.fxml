@@ -38,15 +38,16 @@ com os quais o usuário interage para filtra a tabela-->
             <TextField fx:id="FiltroData" layoutX="87.0" layoutY="33.0" />
          </children>
       </Pane>
-      <TableView fx:id="pacientesTable" layoutX="45.0" layoutY="168.0" prefHeight="390.0" prefWidth="804.0">
+      <TableView fx:id="pacientesTable" layoutX="35.0" layoutY="168.0" prefHeight="390.0" prefWidth="824.0">
         <columns>
           <TableColumn fx:id="IdColumn" prefWidth="64.79998779296875" text="ID" />
-          <TableColumn fx:id="NomeColumn" prefWidth="236.79991912841797" text="Nome" />
-            <TableColumn fx:id="CpfColumn" prefWidth="125.5999755859375" text="CPF" />
-            <TableColumn fx:id="CelularColumn" prefWidth="112.00003051757812" text="Celular" />
-            <TableColumn fx:id="CalcadoColumn" prefWidth="68.00006103515625" text="Nº Calçado" />
-            <TableColumn fx:id="SituacaoColumn" prefWidth="90.39996337890625" text="Situação" />
-            <TableColumn fx:id="DataColumn" prefWidth="106.39990234375" text="Data Cadastro" />
+          <TableColumn fx:id="NomeColumn" prefWidth="205.59996795654297" text="Nome" />
+            <TableColumn fx:id="CpfColumn" prefWidth="131.199951171875" text="CPF" />
+            <TableColumn fx:id="CelularColumn" prefWidth="113.60000610351562" text="Celular" />
+            <TableColumn fx:id="CalcadoColumn" prefWidth="67.99993896484375" text="Nº Calçado" />
+            <TableColumn fx:id="SituacaoColumn" prefWidth="64.00006103515625" text="Situação" />
+            <TableColumn fx:id="DataColumn" prefWidth="99.20001220703125" text="Data Cadastro" />
+            <TableColumn fx:id="ExamesColumn" prefWidth="73.60009765625" text="Ver Exames" />
         </columns>
       </TableView>
    </children>

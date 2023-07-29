@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<!--Arquivo reverente pela interface da tabela que exibe os exames de cada pacient-->
+
+<AnchorPane prefHeight="400.0" prefWidth="607.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.desafio_hs.Exames">
+   <children>
+      <Label layoutX="257.0" layoutY="21.0" text="Exames">
+         <font>
+            <Font size="26.0" />
+         </font>
+      </Label>
+      <TableView fx:id="examesTable" layoutX="106.0" layoutY="100.0" prefHeight="200.0" prefWidth="386.0">
+        <columns>
+          <TableColumn fx:id="ExamesIdColumn" prefWidth="59.2000732421875" text="ID" />
+          <TableColumn fx:id="TipoColumn" prefWidth="79.20001220703125" text="Tipo" />
+            <TableColumn fx:id="ArquivosColumn" prefWidth="165.5999755859375" text="Arquivo de Coeficientes" />
+            <TableColumn fx:id="IdPacienteColumn" prefWidth="79.99997558593748" text="ID Paciente" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>
