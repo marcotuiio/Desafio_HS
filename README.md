@@ -28,3 +28,6 @@ Uma vez que tudo está de acordo, basta abrir o arquivo com/example/desafio_hs/D
 * Atualizei nome das classes para ficar mais padronizado
 * Modularizei interação com banco de dados
 * Testes com exibição da tabela de pacientes e link com tabela de exames feito
+
+# BUG REPORT
+* Bug visual que ocasionalmente botão de exame não aparece (as vezes scrollar na tabela resolve)
