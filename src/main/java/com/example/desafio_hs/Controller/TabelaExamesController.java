@@ -17,7 +17,7 @@ import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class ExamesController implements Initializable {
+public class TabelaExamesController implements Initializable {
     @FXML
     private TableColumn<Exame, String> ArquivosColumn;
 
@@ -40,6 +40,7 @@ public class ExamesController implements Initializable {
     // dados dos exames do paciente com o id em questão e, em seguida, preencher a tabela com os resultados.
     // Ele também configura as CellValueFactory para cada coluna, para vincular as propriedades corretas de
     // Exame às células da tabela.
+
     public void tableExames(int pacienteId) {
         databaseManager.connect();
         Connection connection = databaseManager.getConnection();
@@ -70,7 +71,7 @@ public class ExamesController implements Initializable {
                     exame.setFrequenciaLeitura(resultSet.getInt("FrequenciaLeitura"));
                     exame.setObservacoes(resultSet.getString("Observacoes"));
                     exame.setTipoExame(resultSet.getInt("TipoExame"));
-                    exame.setTotalizadorDadosExame(resultSet.getInt("setAnguloRotacao"));
+                    exame.setTotalizadorDadosExame(resultSet.getInt("totalizadorDadosExames"));
                     exame.setXOrigem(resultSet.getFloat("XOrigem"));
                     exame.setYOrigem(resultSet.getFloat("YOrigem"));
                     exame.setAcompanhamentoDiarioId(resultSet.getInt("Acompanhamento_diario_ID"));
@@ -89,13 +90,10 @@ public class ExamesController implements Initializable {
                 IdPacienteColumn.setCellValueFactory(f -> f.getValue().pacienteIdProperty());
             }
         } catch (SQLException ex) {
-            Logger.getLogger(DataboardController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TabelaPacientesController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
     @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        // Inicializa as colunas da tabela de exames
-        tableExames(2);
-    }
+    public void initialize(URL url, ResourceBundle resourceBundle) {}
 }

@@ -24,4 +24,7 @@ Uma vez que tudo está de acordo, basta abrir o arquivo com/example/desafio_hs/D
   * 1-criar classe model para Exame (FEITO)
   * 2-criar tabela (FEITO)
   * 3-adicionar o botao na tabela de pacientes (FEITO)
-  * 4-descobrir como abrir outra tela para cada paciente 
+  * 4-descobrir como abrir outra tela para cada paciente (FEITO)
+* Atualizei nome das classes para ficar mais padronizado
+* Modularizei interação com banco de dados
+* Testes com exibição da tabela de pacientes e link com tabela de exames feito

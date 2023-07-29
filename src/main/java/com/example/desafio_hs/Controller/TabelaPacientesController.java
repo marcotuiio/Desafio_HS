@@ -1,7 +1,7 @@
 package com.example.desafio_hs.Controller;
 
+import com.example.desafio_hs.ExamesWindow;
 import com.example.desafio_hs.Model.Paciente;
-import javafx.beans.property.IntegerProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -16,7 +16,7 @@ import java.util.ResourceBundle;
 
 // Classe elaborada a partir do 'front' do programa via JavaFX responsável pela integração
 // do ambiente externo, como a tabela de dados e o banco
-public class DataboardController implements Initializable {
+public class TabelaPacientesController implements Initializable {
     private static final String DB_URL = "jdbc:mysql://localhost:3306/hstechnology";
     private static final String DB_USER = "root";
     private static final String DB_PASSWORD = "marco";
@@ -129,10 +129,12 @@ public class DataboardController implements Initializable {
             criarBotaoExames();
 
         } catch (SQLException ex) {
-            Logger.getLogger(DataboardController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TabelaPacientesController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
+    // Funcão que cria um botão para cada paciente, utilizando seu ID como chave de buscas
+    // e ja atrelando a função que será chamada na ativação.
     public void criarBotaoExames() {
         ExamesColumn.setCellFactory(param -> new TableCell<>() {
             private final Button examesButton = new Button("EXAMES");
@@ -141,7 +143,10 @@ public class DataboardController implements Initializable {
                 // Define a ação do botão quando clicado
                 examesButton.setOnAction(event -> {
                     Paciente paciente = getTableView().getItems().get(getIndex());
-                    abrirConsultaExames(paciente.getPacienteId());
+                    TabelaExamesController examesController = new TabelaExamesController();
+//                    System.out.println("Oi o botão EXAMES foi ativado || Paciente_ID = " + paciente.getPacienteId());
+                    // Abra a nova janela de exames passando o ID do paciente
+                    ExamesWindow.display(paciente.getPacienteId(), paciente.getNome());
                 });
             }
 
@@ -154,26 +159,6 @@ public class DataboardController implements Initializable {
                 }
             }
         });
-    }
-
-    private void abrirConsultaExames(int pacienteId) {
-        // Aqui você deve implementar o código para abrir a consulta de exames
-        // usando o ID do paciente.
-        // Execute a consulta SQL na tabela "exames" utilizando o pacienteId.
-        // Por exemplo:
-        Connection connection = databaseManager.getConnection();
-        try {
-            // Supondo que você já tem uma conexão com o banco de dados chamada "connection"
-            PreparedStatement preparedStatement = connection.prepareStatement(
-                    "SELECT * FROM exames WHERE Paciente_ID = ?");
-            preparedStatement.setInt(1, pacienteId);
-            ResultSet resultSet = preparedStatement.executeQuery();
-
-            // Faça o que for necessário com o resultado da consulta...
-            // Por exemplo, exibir os exames em uma nova janela ou em um diálogo.
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
     }
 
     // Função que deve receber de forma dinâmica o que o usuário digita no campo de nome e busca
