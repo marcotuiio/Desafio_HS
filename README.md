@@ -5,6 +5,17 @@ Desafio abordando Banco de Dados e JAVA proposto durante aplicação de estágio
 Crie uma aplicação Java Desktop que liste os pacientes de um banco de dados MySQL. 
 A aplicação deve permitir que o profissional pesquise pelo nome do paciente e atualize a lista dinamicamente conforme a digitação.
 
+## Ativades Bônus
+1. Filtros Avançados: Adicione a funcionalidade de filtrar pacientes por outros critérios, como idade, data de último exame, ou tipo de exame mais recente. (FIZ E ESTÁ SIMPLES DE ACRESCENTAR QUALQUER OUTRO FILTRO)
+
+2. Hibernate: Faça a implementação usando o framework hibernante, caso não tenha feito, pois esse é o mesmo framework utilizado no BaroSys.
+
+3. Interface de Usuário: Crie uma interface de usuário amigável que exiba a lista de pacientes e permita ao profissional pesquisar facilmente. No BaroSys é usado JavaFX para interface. (JAVAFX E SCENEBUILDER USADOS)
+
+4. Mostrar Exames: Crie uma opção para alternar o modo de listagem de pacientes para exames. Utilize para isso a tabela exames que possui um vínculo com a tabela pacientes através da chave estrangeira Paciente_ID. (FEITO, OPTEI POR EXIBIR APENAS ALGUNS DADOS DOS EXAMES, MAS COMO O OBJETO ESTÁ COMPLETO É SIMPLES EXIBIR QUALQUER COISA)
+
+5. Testes Automatizados: Escreva testes automatizados para a sua implementação, garantindo que todas as principais funcionalidades estão sendo adequadamente testadas.
+
 ## Instrução de uso
 No arquivo DatabaseManager.java altere os campos DB_URL, BD_USERNAME e DB_PASSWORD para acessarem
 o banco de dados MySql que desejar. 
@@ -29,5 +40,5 @@ Uma vez que tudo está de acordo, basta abrir o arquivo com/example/desafio_hs/D
 * Modularizei interação com banco de dados
 * Testes com exibição da tabela de pacientes e link com tabela de exames feito
 
-# BUG REPORT
+## BUG REPORT
 * Bug visual que ocasionalmente botão de exame não aparece (as vezes scrollar na tabela resolve)
