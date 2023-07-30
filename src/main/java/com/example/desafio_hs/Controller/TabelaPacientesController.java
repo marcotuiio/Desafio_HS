@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 
+import java.util.function.Function;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.net.URL;
@@ -17,10 +18,6 @@ import java.util.ResourceBundle;
 // Classe elaborada a partir do 'front' do programa via JavaFX responsável pela integração
 // do ambiente externo, como a tabela de dados e o banco
 public class TabelaPacientesController implements Initializable {
-    private static final String DB_URL = "jdbc:mysql://localhost:3306/hstechnology";
-    private static final String DB_USER = "root";
-    private static final String DB_PASSWORD = "marco";
-
     @FXML
     private TableColumn<Paciente, Number> CalcadoColumn;
 
@@ -161,53 +158,17 @@ public class TabelaPacientesController implements Initializable {
         });
     }
 
-    // Função que deve receber de forma dinâmica o que o usuário digita no campo de nome e busca
-    // na tabela de pacientes para exibir os nomes condizentes com o filtro
-    public void aplicarFiltroNome(String filtro, ObservableList<Object> listaOriginal) {
+    // Função que deve receber de forma dinâmica o que o usuário digita nos campos, recebendo o dados
+    // de pametro e busca na tabela de pacientes para exibir os pacientes condizentes com o filtro
+    public void aplicarFiltroGenerico(String filtro, Function<Object, String> getData,
+                                      ObservableList<Object> listaOriginal) {
         ObservableList<Object> pacientesFiltrados = FXCollections.observableArrayList();
 
         // Percorre sempre a lista ORIGINAL de pacientes, pois se algum char for apagado é para
         // ela que as buscas devem retornar
         if (filtro != null) {
             for (Object paciente : listaOriginal) {
-                String nome = ((Paciente) paciente).getNome();
-                if (nome.toLowerCase().startsWith(filtro.toLowerCase())) {
-                    pacientesFiltrados.add(paciente);
-                }
-            }
-        }
-        pacientesTable.setItems(pacientesFiltrados);
-    }
-
-    // Função que deve receber de forma dinâmica o que o usuário digita no campo de numero do calçado
-    // e busca na tabela de pacientes para exibir os nomes condizentes com o filtro
-    public void aplicarFiltroCalcado(String filtro, ObservableList<Object> listaOriginal) {
-        ObservableList<Object> pacientesFiltrados = FXCollections.observableArrayList();
-
-        // Percorre sempre a lista ORIGINAL de pacientes, pois se algum char for apagado é para
-        // ela que as buscas devem retornar
-        if (filtro != null) {
-            for (Object paciente : listaOriginal) {
-                int num = ((Paciente) paciente).getNumeroCalcado();
-                String num_calcado = Integer.toString(num);
-                if (num_calcado.startsWith(filtro.toLowerCase())) {
-                    pacientesFiltrados.add(paciente);
-                }
-            }
-        }
-        pacientesTable.setItems(pacientesFiltrados);
-    }
-
-    // Função que deve receber de forma dinâmica o que o usuário digita no campo data de cadastro
-    // e busca na tabela de pacientes para exibir os nomes condizentes com o filtro
-    public void aplicarFiltroData(String filtro, ObservableList<Object> listaOriginal) {
-        ObservableList<Object> pacientesFiltrados = FXCollections.observableArrayList();
-
-        // Percorre sempre a lista ORIGINAL de pacientes, pois se algum char for apagado é para
-        // ela que as buscas devem retornar
-        if (filtro != null) {
-            for (Object paciente : listaOriginal) {
-                String data = ((Paciente) paciente).getDataCadastro();
+                String data = getData.apply(paciente); // forma generica
                 if (data.toLowerCase().startsWith(filtro.toLowerCase())) {
                     pacientesFiltrados.add(paciente);
                 }
@@ -229,15 +190,15 @@ public class TabelaPacientesController implements Initializable {
         reserva.addAll(pacientesTable.getItems());
 
         FiltroNome.textProperty().addListener((observable, oldValue, newValue) -> {
-            aplicarFiltroNome(newValue, reserva);
+            aplicarFiltroGenerico(newValue, paciente -> ((Paciente)paciente).getNome(), reserva);
         });
 
         FiltroCalcado.textProperty().addListener((observable, oldValue, newValue) -> {
-            aplicarFiltroCalcado(newValue, reserva);
+            aplicarFiltroGenerico(newValue, paciente -> String.valueOf(((Paciente)paciente).getNumeroCalcado()), reserva);
         });
 
         FiltroData.textProperty().addListener((observable, oldValue, newValue) -> {
-            aplicarFiltroData(newValue, reserva);
+            aplicarFiltroGenerico(newValue, paciente -> ((Paciente)paciente).getDataCadastro(), reserva);
         });
     }
 }
